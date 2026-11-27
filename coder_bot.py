@@ -295,10 +295,7 @@ async def ask_openrouter(api_key: str, system_prompt: str, messages: list) -> st
 def extract_code_files(text: str):
     files = []
     # Ищем блоки кода с указанием имени файла перед блоком или внутри первой строки
-    pattern = re.compile(
-        r"(?:([a-zA-Z0-9_.-]+\.(?:py|txt|html|css|js|json|md))\s*[:\-]?\s*)?```([a-zA-Z0-9_-]*)
-([\s\S]*?)```"
-    )
+    pattern = re.compile(r"(?:`([a-zA-Z0-9_.-]+\.(?:py|txt|html|css|js|json|md))`\s*[:\-]?\s*)?```([a-zA-Z0-9_-]*)\n([\s\(\S\)]*?)```")
     idx = 1
     for match in pattern.finditer(text):
         fname, lang, code = match.group(1), (match.group(2) or "").lower(), match.group(3)
