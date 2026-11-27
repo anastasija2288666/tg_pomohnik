@@ -360,7 +360,7 @@ async def handle_prompt(message: Message):
     files = extract_code_files(reply)
 
     # Убираем длинные блоки кода из текстового сообщения, если прикрепляем их файлами
-    clean_text = re.sub(r"```[\s\S]*?```", "
+     clean_text = re.sub(r"```[\s\S]*?```", "
 📄 <i>[Код прикреплён файлом ниже]</i>
 ", reply).strip()
     if len(clean_text) > 3900:
